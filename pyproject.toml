@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "dataops"
+version = "2.5.0a0"
+description = ""
+authors = ["Indoc Research"]
+
+[tool.poetry.dependencies]
+alembic = "^1.8.0"
+async-asgi-testclient = "^1.4.10"
+asyncpg = "^0.25.0"
+certifi = "2021.10.8"
+chardet = "3.0.4"
+click = "7.1.2"
+fastapi = "0.90.1"
+FastAPI-SQLAlchemy = "0.2.1"
+fastapi-utils = "0.2.1"
+greenlet = "1.1.2"
+grpcio = "1.50.0"
+gunicorn = "20.0.4"
+h11 = "0.12.0"
+httptools = "0.4.0"
+httpx = "^0.23.0"
+idna = "2.10"
+importlib-metadata = "4.2"
+opentelemetry-exporter-jaeger = "1.6.2"
+opentelemetry-instrumentation = "^0.30b1"
+opentelemetry-instrumentation-fastapi = "^0.30b1"
+opentelemetry-instrumentation-httpx = "^0.30b1"
+opentelemetry-instrumentation-logging = "^0.30b1"
+opentelemetry-instrumentation-requests = "^0.30b1"
+opentelemetry-instrumentation-sqlalchemy = "^0.30b1"
+pilot-platform-common = "^0.2.11"
+psycopg2-binary = "2.9.3"
+pydantic = "1.8.2"
+pyjwt = "2.6.0"
+python = "^3.9"
+python-dotenv = "0.19.1"
+python-json-logger = "2.0.2"
+python-multipart = "0.0.5"
+redis = "^4.5"
+requests = "2.24.0"
+six = "1.16.0"
+SQLAlchemy = "1.4.27"
+sse-starlette = "1.1.6"
+testcontainers = "3.4.2"
+typing_extensions = "4.0.0"
+urllib3 = "1.25.11"
+uvicorn = {version = "0.17.6", extras = ["standard"]}
+zipp = "3.6.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "7.1.2"
+pytest-cov = "3.0.0"
+pytest-httpx = "^0.21.0"
+pytest-mock = "^3.7.0"
+pytest-asyncio = "0.18.1"
+fakeredis = "^2.11"
+faker = "12.3.3"
+flake8 = "^4.0.1"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+concurrency = ["thread", "greenlet"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
