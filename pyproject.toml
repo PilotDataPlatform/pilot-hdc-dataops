@@ -1,10 +1,11 @@
 [tool.poetry]
 name = "dataops"
-version = "2.5.0a0"
+version = "2.5.5"
 description = ""
 authors = ["Indoc Research"]
 
 [tool.poetry.dependencies]
+python = "^3.9"
 alembic = "^1.8.0"
 async-asgi-testclient = "^1.4.10"
 asyncpg = "^0.25.0"
@@ -29,13 +30,11 @@ opentelemetry-instrumentation-httpx = "^0.30b1"
 opentelemetry-instrumentation-logging = "^0.30b1"
 opentelemetry-instrumentation-requests = "^0.30b1"
 opentelemetry-instrumentation-sqlalchemy = "^0.30b1"
-pilot-platform-common = "^0.2.11"
+pilot-platform-common = "0.3.0"
 psycopg2-binary = "2.9.3"
 pydantic = "1.8.2"
 pyjwt = "2.6.0"
-python = "^3.9"
 python-dotenv = "0.19.1"
-python-json-logger = "2.0.2"
 python-multipart = "0.0.5"
 redis = "^4.5"
 requests = "2.24.0"

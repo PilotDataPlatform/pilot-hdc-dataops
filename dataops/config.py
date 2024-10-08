@@ -1,6 +1,7 @@
-# Copyright (C) 2022-2023 Indoc Systems
+# Copyright (C) 2022-Present Indoc Systems
 #
-# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE, Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
+# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE,
+# Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
 import base64
@@ -49,7 +50,9 @@ class Settings(BaseSettings):
     HOST: str = '127.0.0.1'
     WORKERS: int = 1
     RELOAD: bool = False
+
     LOGGING_LEVEL: int = logging.INFO
+    LOGGING_FORMAT: str = 'json'
 
     GREEN_ZONE_LABEL: str = 'Greenroom'
     CORE_ZONE_LABEL: str = 'Core'
@@ -76,11 +79,6 @@ class Settings(BaseSettings):
     OPEN_TELEMETRY_ENABLED: bool = False
     OPEN_TELEMETRY_HOST: str = '127.0.0.1'
     OPEN_TELEMETRY_PORT: int = 6831
-
-    LOG_LEVEL_DEFAULT = logging.INFO
-    LOG_LEVEL_FILE = logging.INFO
-    LOG_LEVEL_STDOUT = logging.INFO
-    LOG_LEVEL_STDERR = logging.ERROR
 
     RSA_PUBLIC_KEY: str
 

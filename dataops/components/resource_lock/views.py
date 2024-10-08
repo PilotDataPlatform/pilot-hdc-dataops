@@ -1,9 +1,9 @@
-# Copyright (C) 2022-2023 Indoc Systems
+# Copyright (C) 2022-Present Indoc Systems
 #
-# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE, Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
+# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE,
+# Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
-from common import LoggerFactory
 from fastapi import APIRouter
 from fastapi import Depends
 
@@ -15,15 +15,7 @@ from dataops.components.resource_lock.schemas import ResourceLockBulkCreateSchem
 from dataops.components.resource_lock.schemas import ResourceLockBulkResponseSchema
 from dataops.components.resource_lock.schemas import ResourceLockCreateSchema
 from dataops.components.resource_lock.schemas import ResourceLockResponseSchema
-from dataops.config import ConfigClass
-
-logger = LoggerFactory(
-    'resource_lock',
-    level_default=ConfigClass.LOG_LEVEL_DEFAULT,
-    level_file=ConfigClass.LOG_LEVEL_FILE,
-    level_stdout=ConfigClass.LOG_LEVEL_STDOUT,
-    level_stderr=ConfigClass.LOG_LEVEL_STDERR,
-).get_logger()
+from dataops.logger import logger
 
 router = APIRouter(prefix='/resource/lock', tags=['Resource Locking'])
 

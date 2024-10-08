@@ -1,10 +1,12 @@
-# Copyright (C) 2022-2023 Indoc Systems
+# Copyright (C) 2022-Present Indoc Systems
 #
-# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE, Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
+# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE,
+# Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
 from functools import partial
 
+from common import configure_logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.requests import Request
@@ -47,12 +49,19 @@ def create_app() -> FastAPI:
         version=settings.VERSION,
     )
 
+    setup_logging(settings)
     setup_routers(app)
     setup_middlewares(app)
     setup_exception_handlers(app)
     setup_dependencies(app, settings)
 
     return app
+
+
+def setup_logging(settings: Settings) -> None:
+    """Configure the application logging."""
+
+    configure_logging(settings.LOGGING_LEVEL, settings.LOGGING_FORMAT)
 
 
 def setup_routers(app: FastAPI) -> None:
