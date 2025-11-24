@@ -5,7 +5,6 @@
 # You may not use this file except in compliance with the License.
 
 import ast
-from typing import Union
 
 from dataops.components.task_stream.schemas import SSETaskStreamSchema
 from dataops.components.task_stream.schemas import TaskStreamCreateSchema
@@ -42,7 +41,7 @@ class StreamParser:
         return status
 
     def filter_parsed_status(
-        self, file_statuses: list[TaskStreamCreateSchema], params: Union[TaskStreamRetrieveSchema, SSETaskStreamSchema]
+        self, file_statuses: list[TaskStreamCreateSchema], params: TaskStreamRetrieveSchema | SSETaskStreamSchema
     ) -> list[dict]:
         """Filters parsed file statuses."""
         filtered_statuses = []

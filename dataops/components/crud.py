@@ -7,8 +7,6 @@
 from datetime import timedelta
 from typing import Any
 from typing import Optional
-from typing import Type
-from typing import Union
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -35,7 +33,7 @@ class CRUD:
     """Base CRUD class for managing database models."""
 
     session: AsyncSession
-    model: Type[DBModel]
+    model: type[DBModel]
     db_error_codes: dict[str, ServiceException] = {
         '23503': NotFound(),  # missing foreign key
         '23505': AlreadyExists(),  # duplicated entry
@@ -65,7 +63,7 @@ class CRUD:
         """Create base select."""
         return select(self.model)
 
-    async def execute(self, statement: Executable, **kwds: Any) -> Union[CursorResult, Result]:
+    async def execute(self, statement: Executable, **kwds: Any) -> CursorResult | Result:
         """Execute a statement and return buffered result."""
 
         return await self.session.execute(statement, **kwds)
@@ -75,7 +73,7 @@ class CRUD:
 
         return await self.session.scalars(statement, **kwds)
 
-    async def _create_one(self, statement: Executable) -> Union[UUID, str]:
+    async def _create_one(self, statement: Executable) -> UUID | str:
         """Execute a statement to create one entry."""
 
         try:
@@ -155,7 +153,7 @@ class RedisCRUD:
 
     async def mget_by_prefix(self, prefix: str) -> bytes:
         """Query to find key with pattern and retrieve respective record."""
-        query = '{}:*'.format(prefix)
+        query = f'{prefix}:*'
         keys = await self.__instance.keys(query)
         return await self.__instance.mget(keys)
 
@@ -169,7 +167,7 @@ class RedisCRUD:
 
     async def mdele_by_prefix(self, prefix: str) -> list:
         """Query to find key with pattern and delete respective record."""
-        query = '{}:*'.format(prefix)
+        query = f'{prefix}:*'
         keys = await self.__instance.keys(query)
         results = []
         for key in keys:

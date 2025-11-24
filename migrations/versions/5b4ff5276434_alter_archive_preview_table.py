@@ -3,8 +3,7 @@
 # Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE,
 # Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
-
-"""add index to file_id, alter archive_preview to jsonb.
+"""Add index to file_id, alter archive_preview to jsonb.
 
 Revision ID: 5b4ff5276434
 Revises: ebd1730ac381

@@ -4,8 +4,6 @@
 # Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
-from typing import List
-
 from dataops.components.cache import Cache
 from dataops.components.resource_lock.schemas import ResourceLockBulkResponseSchema
 from dataops.components.resource_lock.schemas import ResourceLockResponseSchema
@@ -15,15 +13,15 @@ from dataops.logger import logger
 class ResourceLockerCache(Cache):
     """Manages resource operation locking and unlocking and their respective lock statuses."""
 
-    def str_to_int_list(self, input_: bytes) -> List[int]:
+    def str_to_int_list(self, input_: bytes) -> list[int]:
         """Return decoded strings as a list of integers."""
         return [int(x) for x in input_.decode('utf-8').split(',')]
 
-    def int_list_to_str(self, input_: List[int]) -> str:
+    def int_list_to_str(self, input_: list[int]) -> str:
         """Return joined list as a string with delimiter."""
         return ','.join([str(x) for x in input_])
 
-    async def perform_bulk_lock(self, keys: List[str], operation: str) -> ResourceLockBulkResponseSchema:
+    async def perform_bulk_lock(self, keys: list[str], operation: str) -> ResourceLockBulkResponseSchema:
         """Perform bulk lock for multiple keys.
 
         If one of the lock attempts fails, the locking attempts of the following keys are stopped.
@@ -46,7 +44,7 @@ class ResourceLockerCache(Cache):
 
         return ResourceLockBulkResponseSchema(keys_status=status)
 
-    async def perform_bulk_unlock(self, keys: List[str], operation: str) -> ResourceLockBulkResponseSchema:
+    async def perform_bulk_unlock(self, keys: list[str], operation: str) -> ResourceLockBulkResponseSchema:
         """Perform bulk unlock for multiple keys."""
 
         keys = sorted(keys)

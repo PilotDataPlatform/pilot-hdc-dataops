@@ -4,7 +4,6 @@
 # Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
-from typing import Union
 from uuid import UUID
 
 from fastapi import APIRouter
@@ -23,7 +22,7 @@ router = APIRouter(prefix='/archive', tags=['Archive Preview'])
 
 @router.get('', summary='Get a archive preview given file id', response_model=ArchivePreviewResponseSchema)
 async def get_archive_preview(
-    file_id: Union[UUID, str], archive_preview_crud: ArchivePreviewCRUD = Depends(get_archive_preview_crud)
+    file_id: UUID | str, archive_preview_crud: ArchivePreviewCRUD = Depends(get_archive_preview_crud)
 ) -> ArchivePreviewResponseSchema:
     """Get an archive preview by id or code."""
 

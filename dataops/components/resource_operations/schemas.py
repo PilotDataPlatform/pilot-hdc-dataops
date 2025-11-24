@@ -6,8 +6,6 @@
 
 from enum import Enum
 from enum import unique
-from typing import List
-from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -52,10 +50,10 @@ class ResourceOperationTargetSchema(BaseSchema):
 class ResourceOperationPayloadSchema(BaseSchema):
     """Schema of payload for resource operation request."""
 
-    request_info: Optional[dict]
-    targets: List[ResourceOperationTargetSchema]
+    request_info: dict | None
+    targets: list[ResourceOperationTargetSchema]
     source: str
-    destination: Optional[str]
+    destination: str | None
 
 
 class ResourceOperationSchema(BaseSchema):
@@ -88,4 +86,4 @@ class FileStatusSchema(BaseSchema):
 class ResourceOperationResponseSchema(BaseModel):
     """Schema of resource operation request response."""
 
-    operation_info: List[FileStatusSchema]
+    operation_info: list[FileStatusSchema]

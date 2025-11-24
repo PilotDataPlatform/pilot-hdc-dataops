@@ -19,7 +19,6 @@ from dataops.components.task_stream.schemas import TaskStreamDeleteSchema
 from dataops.components.task_stream.schemas import TaskStreamResponseSchema
 from dataops.components.task_stream.schemas import TaskStreamRetrieveSchema
 from dataops.dependencies.auth import AuthManager
-from dataops.logger import logger
 
 router = APIRouter(prefix='/task-stream', tags=['Task Streaming'])
 
