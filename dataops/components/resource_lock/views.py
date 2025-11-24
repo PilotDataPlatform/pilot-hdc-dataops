@@ -15,7 +15,6 @@ from dataops.components.resource_lock.schemas import ResourceLockBulkCreateSchem
 from dataops.components.resource_lock.schemas import ResourceLockBulkResponseSchema
 from dataops.components.resource_lock.schemas import ResourceLockCreateSchema
 from dataops.components.resource_lock.schemas import ResourceLockResponseSchema
-from dataops.logger import logger
 
 router = APIRouter(prefix='/resource/lock', tags=['Resource Locking'])
 

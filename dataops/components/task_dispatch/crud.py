@@ -6,8 +6,6 @@
 
 import json
 import time
-from typing import Optional
-from typing import Union
 
 from dataops.components.crud import RedisCRUD
 from dataops.components.exceptions import AlreadyExists
@@ -28,10 +26,10 @@ class SessionJobCRUD(RedisCRUD):
         code: str,
         action: str,
         operator: str,
-        sorting: Optional[bool] = False,
+        sorting: bool | None = False,
     ) -> list:
         """Get job records in Redis for a respective session."""
-        key = 'dataaction:{}:{}:{}:{}:{}:{}'.format(session_id, label, job_id, action, code, operator)
+        key = f'dataaction:{session_id}:{label}:{job_id}:{action}:{code}:{operator}'
         value = await self.mget_by_prefix(key)
         value_decode = [json.loads(record.decode('utf-8')) for record in value] if value else []
         session_jobs = sort_by_update_time(value_decode) if sorting else value_decode
@@ -47,18 +45,19 @@ class SessionJobCRUD(RedisCRUD):
             logger.exception(f'Job id already exists: {job["job_id"]}')
             raise AlreadyExists()
 
-    async def set_job(self, entry: Union[BaseSchema, dict]) -> dict:
+    async def set_job(self, entry: BaseSchema | dict) -> dict:
         """Create new or update existing job record (key,value) in Redis for a respective session."""
 
         job = dict(entry)
-        key = 'dataaction:{}:{}:{}:{}:{}:{}:{}'.format(
-            job['session_id'],
-            job['label'],
-            job['job_id'],
-            job['action'],
-            job['code'],
-            job['operator'],
-            job['source'],
+        key = (
+            f'dataaction'
+            f':{job["session_id"]}'
+            f':{job["label"]}'
+            f':{job["job_id"]}'
+            f':{job["action"]}'
+            f':{job["code"]}'
+            f':{job["operator"]}'
+            f':{job["source"]}'
         )
 
         value = {
@@ -107,8 +106,14 @@ class SessionJobCRUD(RedisCRUD):
     async def delete_job(self, entry: BaseSchema) -> list:
         """Delete existing job for a respective session."""
         job = entry.dict()
-        key = 'dataaction:{}:{}:{}:{}:{}:{}'.format(
-            job['session_id'], job['label'], job['job_id'], job['action'], job['code'], job['operator']
+        key = (
+            f'dataaction'
+            f':{job["session_id"]}'
+            f':{job["label"]}'
+            f':{job["job_id"]}'
+            f':{job["action"]}'
+            f':{job["code"]}'
+            f':{job["operator"]}'
         )
         value = await self.mdele_by_prefix(key)
         return value

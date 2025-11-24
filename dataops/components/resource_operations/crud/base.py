@@ -5,7 +5,6 @@
 # You may not use this file except in compliance with the License.
 
 from time import time
-from typing import List
 from uuid import UUID
 
 from dataops.components.crud import RedisCRUD
@@ -38,7 +37,7 @@ class BaseResourceProcessing(RedisCRUD):
             logger.exception(f'Source/destination is not a valid resource type: {item_id}')
             raise InvalidInput()
 
-    async def validate_targets(self, targets: List[ResourceOperationTargetSchema]) -> ItemFilter:
+    async def validate_targets(self, targets: list[ResourceOperationTargetSchema]) -> ItemFilter:
         """Validate resource type and archive status of target ids involved in resource operation."""
         fetched = []
         for target in targets:

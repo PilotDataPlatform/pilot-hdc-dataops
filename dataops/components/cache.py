@@ -4,9 +4,6 @@
 # Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
-from typing import Optional
-from typing import Union
-
 from redis.asyncio.client import Redis
 
 
@@ -16,12 +13,12 @@ class Cache:
     def __init__(self, redis: Redis) -> None:
         self.redis = redis
 
-    async def set(self, key: str, value: Union[str, bytes]) -> bool:
+    async def set(self, key: str, value: str | bytes) -> bool:
         """Set the value for the key."""
 
         return await self.redis.set(key, value)
 
-    async def get(self, key: str) -> Optional[bytes]:
+    async def get(self, key: str) -> bytes | None:
         """Return the value for the key or None if the key doesn't exist."""
 
         return await self.redis.get(key)

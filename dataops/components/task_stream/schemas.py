@@ -5,8 +5,6 @@
 # You may not use this file except in compliance with the License.
 
 import re
-from typing import Optional
-from typing import Union
 from uuid import UUID
 from uuid import uuid4
 
@@ -22,17 +20,17 @@ class TaskStreamRetrieveSchema(BaseModel):
     """Schema for retrieving file status."""
 
     session_id: str
-    container_code: Optional[str]
-    container_type: Optional[str]
-    action_type: Optional[str]
-    target_names: Optional[str]
-    job_id: Optional[UUID]
+    container_code: str | None
+    container_type: str | None
+    action_type: str | None
+    target_names: str | None
+    job_id: UUID | None
 
 
 class SSETaskStreamSchema(TaskStreamRetrieveSchema):
     """Schema for stream SSE timeout."""
 
-    request_timeout: Optional[int]
+    request_timeout: int | None
 
 
 class TaskStreamCreateSchema(BaseSchema):
@@ -45,7 +43,7 @@ class TaskStreamCreateSchema(BaseSchema):
     container_type: str
     action_type: str
     status: str
-    job_id: Optional[UUID] = uuid4()
+    job_id: UUID | None = uuid4()
     entry_id: str = None
 
     @validator('session_id')
@@ -97,4 +95,4 @@ class TaskStreamResponseSchema(BaseModel):
     """Response schema for writing and retrieving file status."""
 
     total: int = 0
-    stream_info: Union[dict, list, list[dict]] = {}
+    stream_info: dict | list | list[dict] = {}

@@ -35,10 +35,10 @@ def chdir(directory: Path) -> None:
 def project_root() -> Path:
     path = Path(__file__)
 
-    while path.name != 'dataops':
+    while not (path / 'pyproject.toml').is_file():
         path = path.parent
 
-    yield path
+    return path
 
 
 @pytest.fixture(scope='session')

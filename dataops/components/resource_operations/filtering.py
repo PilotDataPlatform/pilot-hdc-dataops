@@ -5,9 +5,6 @@
 # You may not use this file except in compliance with the License.
 
 from typing import Any
-from typing import Dict
-from typing import List
-from typing import Set
 
 from dataops.components.resource_operations.schemas import ResourceType
 
@@ -29,16 +26,16 @@ class Item(dict):
 class ItemFilter(list):
     """Filter metadata items."""
 
-    def __init__(self, items: List[Dict[str, Any]]) -> None:
+    def __init__(self, items: list[dict[str, Any]]) -> None:
         super().__init__([Item(item) for item in items])
 
     @property
-    def ids(self) -> Set[str]:
+    def ids(self) -> set[str]:
         """Return item ids."""
         return {item.id for item in self}
 
     @property
-    def names(self) -> List[str]:
+    def names(self) -> list[str]:
         """Return item names."""
         return [item.name for item in self]
 
@@ -48,14 +45,14 @@ class ItemFilter(list):
         item_type = self[0]['type'] if len(self) == 1 else 'batch'
         return item_type
 
-    def _get_by_resource_type(self, resource_type: ResourceType) -> List[Item]:
+    def _get_by_resource_type(self, resource_type: ResourceType) -> list[Item]:
         """Validates source type against defined resource types."""
         return [source for source in self if source['type'] == resource_type]
 
-    def filter_folders(self) -> List[Item]:
+    def filter_folders(self) -> list[Item]:
         """Returns items with folder resource type."""
         return self._get_by_resource_type(ResourceType.FOLDER)
 
-    def filter_files(self) -> List[Item]:
+    def filter_files(self) -> list[Item]:
         """Returns items with file resource type."""
         return self._get_by_resource_type(ResourceType.FILE)

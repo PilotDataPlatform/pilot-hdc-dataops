@@ -6,9 +6,6 @@
 
 from enum import Enum
 from enum import unique
-from typing import List
-from typing import Optional
-from typing import Tuple
 
 from pydantic import BaseModel
 
@@ -34,7 +31,7 @@ class ResourceLockCreateSchema(BaseModel):
 class ResourceLockBulkCreateSchema(BaseModel):
     """Schema for bulk creating resource lock by keys and operations."""
 
-    resource_keys: List[str]
+    resource_keys: list[str]
     operation: ResourceLockOperationSchema
 
 
@@ -42,13 +39,13 @@ class ResourceLockResponseSchema(BaseModel):
     """Schema for key and status of locked resource in response."""
 
     key: str
-    status: Optional[str] = False
+    status: str | None = False
 
 
 class ResourceLockBulkResponseSchema(BaseModel):
     """Schema for status of operation locking for multiple keys."""
 
-    keys_status: List[Tuple[str, bool]]
+    keys_status: list[tuple[str, bool]]
 
     def is_successful(self) -> bool:
         """Return true if all statuses are true."""
