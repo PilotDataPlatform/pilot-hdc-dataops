@@ -4,8 +4,25 @@
 # Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
+import faker
 import pytest
-from faker import Faker
+
+
+class Faker(faker.Faker):
+    def container_code(self) -> str:
+        return self.pystr_format('?#' * 10).lower()
+
+    def project_code(self) -> str:
+        return self.container_code()
+
+    def dataset_code(self) -> str:
+        return self.container_code()
+
+    def project_id(self) -> str:
+        return self.uuid4()
+
+    def dataset_id(self) -> str:
+        return self.uuid4()
 
 
 @pytest.fixture

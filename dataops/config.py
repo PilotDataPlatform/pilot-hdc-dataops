@@ -32,6 +32,15 @@ class Settings(BaseSettings):
     METADATA_SERVICE: str
     AUTH_SERVICE: str
 
+    CENTRAL_NODE_API_URL: str = 'https://api.hdc.humanbrainproject.eu'
+    CENTRAL_NODE_KEYCLOAK_URL: str = 'https://iam.hdc.humanbrainproject.eu'
+    CENTRAL_NODE_KEYCLOAK_REALM: str = 'hdc'
+    CENTRAL_NODE_KEYCLOAK_CLIENT_ID: str = 'cli'
+    CENTRAL_NODE_KEYCLOAK_CLIENT_TIMEOUT_SECONDS: int = 30
+    CENTRAL_NODE_DEVICE_AUTH_POLL_INTERVAL_SECONDS: int = 5
+    CENTRAL_NODE_DEVICE_AUTH_POLL_TIMEOUT_SECONDS: int = 300
+    CENTRAL_NODE_DEVICE_AUTH_STORAGE_KEY_PREFIX: str = 'central-node-device-auth'
+
     REDIS_HOST: str
     REDIS_PORT: int
     REDIS_DB: int
