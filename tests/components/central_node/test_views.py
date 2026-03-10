@@ -5,7 +5,6 @@
 # You may not use this file except in compliance with the License.
 
 from async_asgi_testclient import TestClient
-from faker import Faker
 from pytest_httpx import HTTPXMock
 
 from dataops.components.central_node.device_storage import DeviceStorage
@@ -13,6 +12,7 @@ from dataops.components.central_node.device_storage import UploadData
 from dataops.components.central_node.keycloak import KeycloakClient
 from dataops.components.central_node.schemas import FileUploadSchema
 from dataops.services.queue import QueueService
+from tests.fixtures.fake import Faker
 
 
 class TestCentralNodeViews:

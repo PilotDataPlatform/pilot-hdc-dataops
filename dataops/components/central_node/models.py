@@ -7,6 +7,7 @@
 import time as tm
 
 from pydantic import BaseModel
+from pydantic import Field
 
 
 class MessagePayload(BaseModel):
@@ -22,6 +23,6 @@ class MessagePayload(BaseModel):
 
 
 class Message(BaseModel):
-    create_timestamp: float = tm.time()
+    create_timestamp: float = Field(default_factory=tm.time)
     event_type: str
     payload: MessagePayload

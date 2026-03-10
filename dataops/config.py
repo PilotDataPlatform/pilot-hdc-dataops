@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     """Store service configuration settings."""
 
     APP_NAME: str = 'dataops_service'
-    VERSION = '2.5.8'
+    VERSION = '2.5.9'
     PORT: int = 5063
     HOST: str = '127.0.0.1'
     WORKERS: int = 1
