@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     """Store service configuration settings."""
 
     APP_NAME: str = 'dataops_service'
-    VERSION = '2.5.8'
+    VERSION = '2.5.9'
     PORT: int = 5063
     HOST: str = '127.0.0.1'
     WORKERS: int = 1
@@ -31,6 +31,15 @@ class Settings(BaseSettings):
     QUEUE_SERVICE: str
     METADATA_SERVICE: str
     AUTH_SERVICE: str
+
+    CENTRAL_NODE_API_URL: str = 'https://api.hdc.humanbrainproject.eu'
+    CENTRAL_NODE_KEYCLOAK_URL: str = 'https://iam.hdc.humanbrainproject.eu'
+    CENTRAL_NODE_KEYCLOAK_REALM: str = 'hdc'
+    CENTRAL_NODE_KEYCLOAK_CLIENT_ID: str = 'cli'
+    CENTRAL_NODE_KEYCLOAK_CLIENT_TIMEOUT_SECONDS: int = 30
+    CENTRAL_NODE_DEVICE_AUTH_POLL_INTERVAL_SECONDS: int = 5
+    CENTRAL_NODE_DEVICE_AUTH_POLL_TIMEOUT_SECONDS: int = 300
+    CENTRAL_NODE_DEVICE_AUTH_STORAGE_KEY_PREFIX: str = 'central-node-device-auth'
 
     REDIS_HOST: str
     REDIS_PORT: int

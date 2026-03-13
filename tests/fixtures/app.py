@@ -11,6 +11,8 @@ from async_asgi_testclient import TestClient
 from fastapi import FastAPI
 
 from dataops.app import create_app
+from dataops.components.central_node.device_storage import get_device_storage
+from dataops.components.central_node.keycloak import get_keycloak_client
 from dataops.dependencies import get_redis
 from dataops.dependencies.db import get_db_session
 
@@ -25,10 +27,12 @@ def event_loop(request):
 
 
 @pytest.fixture
-def app(event_loop, db_session, cache, redis) -> FastAPI:
+def app(event_loop, db_session, cache, redis, keycloak_client, storage) -> FastAPI:
     app = create_app()
     app.dependency_overrides[get_db_session] = lambda: db_session
     app.dependency_overrides[get_redis] = lambda: redis
+    app.dependency_overrides[get_keycloak_client] = lambda: keycloak_client
+    app.dependency_overrides[get_device_storage] = lambda: storage
     yield app
 
 

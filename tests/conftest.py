@@ -48,6 +48,7 @@ pytest_plugins = [
     'tests.fixtures.cache',
     'tests.fixtures.services.metadata',
     'tests.fixtures.services.queue',
+    'tests.fixtures.components.central_node',
     'tests.fixtures.components.task_dispatch',
     'tests.fixtures.components.resource_operations',
     'tests.fixtures.components.task_stream',

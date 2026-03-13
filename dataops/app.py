@@ -24,6 +24,7 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from pydantic import ValidationError
 
 from dataops.components.archive_preview import archive_preview_router
+from dataops.components.central_node import central_node_router
 from dataops.components.exceptions import ServiceException
 from dataops.components.exceptions import ServiceValidationError
 from dataops.components.health import health_router
@@ -72,6 +73,7 @@ def setup_routers(app: FastAPI) -> None:
     app.include_router(task_stream_router, prefix='/v1')
     app.include_router(resource_ops_router, prefix='/v1')
     app.include_router(archive_preview_router, prefix='/v1')
+    app.include_router(central_node_router, prefix='/v1')
     app.include_router(resource_lock_router, prefix='/v2')
 
 
