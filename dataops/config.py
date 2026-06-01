@@ -32,8 +32,8 @@ class Settings(BaseSettings):
     METADATA_SERVICE: str
     AUTH_SERVICE: str
 
-    CENTRAL_NODE_API_URL: str = 'https://api.hdc.humanbrainproject.eu'
-    CENTRAL_NODE_KEYCLOAK_URL: str = 'https://iam.hdc.humanbrainproject.eu'
+    CENTRAL_NODE_API_URL: str = 'https://api.hdc.ebrains.eu'
+    CENTRAL_NODE_KEYCLOAK_URL: str = 'https://iam.hdc.ebrains.eu'
     CENTRAL_NODE_KEYCLOAK_REALM: str = 'hdc'
     CENTRAL_NODE_KEYCLOAK_CLIENT_ID: str = 'cli'
     CENTRAL_NODE_KEYCLOAK_CLIENT_TIMEOUT_SECONDS: int = 30
